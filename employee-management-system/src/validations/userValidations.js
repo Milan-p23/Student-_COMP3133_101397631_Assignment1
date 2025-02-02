@@ -4,8 +4,8 @@ const { check } = require('express-validator');
 const validateSignup = [
   check('username')
     .trim()
-    .notEmpty().withMessage('Username is required')
-    .isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
+    .notEmpty().withMessage('Username is required ')
+    .isLength({ min: 3 }).withMessage('Username must be at least 3 characters long '),
   check('email')
     .trim()
     .notEmpty().withMessage('Email is required')

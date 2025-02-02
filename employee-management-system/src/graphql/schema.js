@@ -1,11 +1,11 @@
-const { GraphQLSchema, GraphQLObjectType , GraphQLString} = require('graphql');
+const { GraphQLSchema, GraphQLObjectType } = require('graphql');
 
 //Import queries
-const { Login } = require('./queries');
+const { Login, getAllemployees, getEmployeebyID, SearchEmployee } = require('./queries');
 
 //Import mutations
 
-const { Signup, AddEmployee } = require('./mutations');
+const { Signup, AddEmployee , UpdateEmployee, DeleteEmployee} = require('./mutations');
 
 // Define the Query type
 
@@ -14,8 +14,11 @@ const QueryType = new GraphQLObjectType({
     name: 'QueryType',
     description: 'The root query type.',
     fields: {
-        // Add queries here
-        Login
+       
+        Login,
+        getAllemployees,
+        getEmployeebyID,
+        SearchEmployee
     }
 });
 
@@ -24,9 +27,11 @@ const MutationType = new GraphQLObjectType({
     name: 'MutationType',
     description: 'The root mutation type.',
     fields: {
-        // Add mutations here
+       
         Signup,
-        AddEmployee
+        AddEmployee,
+        UpdateEmployee,
+        DeleteEmployee
     }
 });
 

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors'); // ✅ Add CORS middleware
+const cors = require('cors'); // Add CORS middleware
 const { graphqlHTTP } = require('express-graphql');
 const connectDB = require('./config/db');
 const schema = require('./graphql/schema');
@@ -10,10 +10,10 @@ connectDB();
 
 const app = express();
 
-// ✅ Enable CORS to allow GraphQL Playground to fetch data
+// Enable CORS to allow GraphQL Playground to fetch data
 app.use(cors());
 
-// ✅ GraphQL Middleware with Authentication
+//  GraphQL Middleware with Authentication
 app.use(
   '/graphql',
   (req, res, next) => {
@@ -22,7 +22,7 @@ app.use(
     let verifiedUser = null;
     if (token) {
       try {
-        verifiedUser = authenticate(token); // ✅ Verify JWT token
+        verifiedUser = authenticate(token); //  Verify JWT token
         console.log("Verification successful:", verifiedUser);
       } catch (error) {
         console.error("Invalid token:", error.message);
@@ -36,7 +36,7 @@ app.use(
   graphqlHTTP((req) => ({
     schema: schema,
     graphiql: true, 
-    context: { verifiedUser: req.verifiedUser } // ✅ Pass verified user to resolvers
+    context: { verifiedUser: req.verifiedUser } // Pass verified user to resolvers
   }))
 );
 
