@@ -17,9 +17,10 @@ const validateSignup = [
 ];
 
 const validateLogin = [
-  check('usernameOrEmail')
+  check('email')
     .trim()
-    .notEmpty().withMessage('Username or email is required'),
+    .notEmpty().withMessage('Email is required')
+    .isEmail().withMessage('Invalid email format'),
   check('password')
     .trim()
     .notEmpty().withMessage('Password is required')

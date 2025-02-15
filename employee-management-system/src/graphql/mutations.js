@@ -16,59 +16,50 @@ const { validateInput } = require('../utils/validateInput');
 
 // Define the Signup mutation
 const Signup = {
-    // Specify the return type of the mutation
     type: UserType,
-    
-    // Define the arguments required for the mutation
     args: {
-        username: {type : GraphQLString},
-        email: {type : GraphQLString},
-        password: {type : GraphQLString}
+      username: { type: GraphQLString },
+      email: { type: GraphQLString },
+      password: { type: GraphQLString },
     },
-    
-    // Resolver function for the Signup mutation
-    async resolve(parent, args){
-
-        // Validate user input
-        await validateInput(validateSignup, args);
-
-        // Destructure the arguments
-        const { username, email, password } = args;
-        
-        // Check if user already exists
-        const existingUser = await User.findOne({ 
-            $or: [{ username }, { email }] 
-        });
-        
-        if (existingUser) {
-            throw new Error('User already exists');
-        }
-        
-        
-        // Create a new User instance with the provided data
-        const user = new User({
-            username,
-            email,
-            password
-        });
-        
-        // Save the new user to the database
-        await user.save();
-        
-        // Generate token
-        const token = createToken(user);
-        
-        // Return user object with token
-        return {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            token: token,
-            created_at: user.created_at,
-            updated_at: user.updated_at
-        };
-    }
-}
+    async resolve(parent, args) {
+      await validateInput(validateSignup, args);
+  
+      const { username, email, password } = args;
+  
+      // Check if user already exists
+      const existingUser = await User.findOne({
+        $or: [{ username }, { email }],
+      });
+  
+      if (existingUser) {
+        throw new Error('User already exists');
+      }
+  
+      // Create a new User instance with the provided data
+      const user = new User({
+        username, // username is the primary key
+        email,
+        password,
+      });
+  
+      // Save the new user to the database
+      await user.save();
+  
+      // Generate token
+      const token = createToken(user);
+  
+      // Return user object with token
+      return {
+        id: user._id, // Return auto-generated _id
+        username: user.username,
+        email: user.email,
+        token: token,
+        created_at: user.created_at,
+        updated_at: user.updated_at,
+      };
+    },
+  };
 
 
 //Add New employee

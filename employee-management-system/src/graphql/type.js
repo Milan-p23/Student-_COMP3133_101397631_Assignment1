@@ -6,14 +6,14 @@ const UserType = new GraphQLObjectType({
     name: 'User',
     description: 'User type definition',
     fields: () => ({
-        id: { type: GraphQLID},
-        username: { type: GraphQLString },
-        email: { type: GraphQLString },
-        token: { type: GraphQLString },
-        created_at: { type: GraphQLString },
-        updated_at: { type: GraphQLString }
+      id: { type: GraphQLID },
+      username: { type: GraphQLString },
+      email: { type: GraphQLString },
+      token: { type: GraphQLString },
+      created_at: { type: GraphQLString },
+      updated_at: { type: GraphQLString }
     })
-});
+  });
 
 const EmployeeType = new GraphQLObjectType({
     name: 'Employee',
