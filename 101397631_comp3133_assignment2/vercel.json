@@ -6,14 +6,14 @@
       "use": "@vercel/node"
     },
     {
-      "src": "dist/101397631_comp3133_assignment2/browser/**",
+      "src": "dist/101397631_comp3133_assignment2/browser/browser/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "dist/101397631_comp3133_assignment2/browser/$1"
+      "src": "/(.*\\.\\w+$)",
+      "dest": "dist/101397631_comp3133_assignment2/browser/browser/$1"
     },
     {
       "src": "/(.*)",
