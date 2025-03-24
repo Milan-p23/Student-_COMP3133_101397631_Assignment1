@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/101397631_comp3133_assignment2/server/server.mjs",
+      "src": "dist/101397631_comp3133_assignment2/server/main.js",
       "use": "@vercel/node"
     },
     {
@@ -13,7 +13,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/101397631_comp3133_assignment2/server/server.mjs"
+      "dest": "dist/101397631_comp3133_assignment2/server/main.js"
     }
   ]
 }
