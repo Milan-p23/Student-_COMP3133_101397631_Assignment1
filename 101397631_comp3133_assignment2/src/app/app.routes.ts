@@ -11,12 +11,31 @@ import { UpdateEmployeeComponent } from './components/employees/update/update.co
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: "full" },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'employees', component: EmployeeListComponent, canActivate: [AuthGuard] },
-  { path: 'employees/add', component: AddEmployeeComponent, canActivate: [AuthGuard] },
-  { path: 'employees/view/:id', component: ViewEmployeeComponent, canActivate: [AuthGuard] },
-  { path: 'employees/update/:id', component: UpdateEmployeeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'employees',
+    component: EmployeeListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'employees/add',
+    component: AddEmployeeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'employees/view/:id',
+    component: ViewEmployeeComponent,
+    canActivate: [AuthGuard]
+    // ⛔ removed renderMode
+  },
+  {
+    path: 'employees/update/:id',
+    component: UpdateEmployeeComponent,
+    canActivate: [AuthGuard]
+    // ⛔ removed renderMode
+  }
 ];
+
 

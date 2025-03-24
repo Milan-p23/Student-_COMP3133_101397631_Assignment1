@@ -1,6 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { gql } from 'graphql-tag'; 
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
