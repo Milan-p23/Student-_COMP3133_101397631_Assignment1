@@ -1,15 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 const authenticate = (token) => {
-    if (!token) {
-        throw new Error("Authentication failed: No token provided");
-    }
-
+    if (!token) return null; // Return null instead of throwing error
+    
     try {
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
-        return verified; 
+        return jwt.verify(token, process.env.JWT_SECRET);
     } catch (error) {
-        throw new Error("Authentication failed: Invalid token");
+        console.error('Authentication error:', error.message);
+        return null; // Return null for invalid tokens
     }
 };
 

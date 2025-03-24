@@ -38,6 +38,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -50,9 +56,18 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
             },
             "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ],
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -69,6 +84,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "outputHashing": "media",
               "optimization": true,
               "sourceMap": false,
@@ -78,6 +99,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "101397631_comp3133_assignment2:build"
+          },
           "configurations": {
             "production": {
               "buildTarget": "101397631_comp3133_assignment2:build:production"
@@ -91,14 +115,8 @@
         "serve-ssr": {
           "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
-            "browserTarget": "101397631_comp3133_assignment2:build",
-            "serverTarget": "101397631_comp3133_assignment2:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "101397631_comp3133_assignment2:build:production",
-              "serverTarget": "101397631_comp3133_assignment2:server:production"
-            }
+            "browserTarget": "101397631_comp3133_assignment2:build:production",
+            "serverTarget": "101397631_comp3133_assignment2:server:production"
           }
         },
         "prerender": {
@@ -110,7 +128,10 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "101397631_comp3133_assignment2:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

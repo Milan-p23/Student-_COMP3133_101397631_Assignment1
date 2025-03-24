@@ -17,38 +17,37 @@ const { validateInput } = require('../utils/validateInput');
 
 //Define Login Query
 const Login = {
-    type: UserType,
-    args: {
-      email: { type: GraphQLString },
-      password: { type: GraphQLString }
-    },
-    async resolve(parent, args) {
-      await validateInput(validateLogin, args);
-  
-      const { email, password } = args;
-      const user = await User.findOne({ email });
-  
-      if (!user) {
-        throw new Error('User does not exist');
-      }
-  
-      const isvalid = await bcrypt.compare(password, user.password);
-  
-      if (!isvalid) {
-        throw new Error('Invalid password');
-      }
-  
-      const token = createToken(user);
-  
-      return {
-        id: user._id,  // Return _id as id
-        username: user._id,  // Return _id as username
-        email: user.email,
-        token
-      };
-    }
-  };
+  type: UserType,
+  args: {
+    email: { type: GraphQLString },
+    password: { type: GraphQLString }
+  },
+  async resolve(parent, args, context) { // Add context parameter
+    await validateInput(validateLogin, args);
 
+    const { email, password } = args;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      throw new Error('User does not exist');
+    }
+
+    const isvalid = await bcrypt.compare(password, user.password);
+
+    if (!isvalid) {
+      throw new Error('Invalid password');
+    }
+
+    const token = createToken(user);
+
+    return {
+      id: user._id.toString(), // Convert to string
+      username: user.username, // Return actual username, not ID
+      email: user.email,
+      token
+    };
+  }
+};
 
 //To get all the employees
 const getAllemployees = {
