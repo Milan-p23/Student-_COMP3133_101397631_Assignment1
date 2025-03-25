@@ -205,7 +205,34 @@ body {
   }
   
   
-
+  .image-preview-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .img-preview {
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .img-preview:hover {
+    transform: scale(1.05);
+  }
+  
+  .image-error-message {
+    background-color: #fff3f3;
+    border: 1px solid #ffd1d1;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
 
   .employee-form-container {
     max-width: 900px;
@@ -232,3 +259,147 @@ body {
 
 
   
+  /* Employee List Specific Styles */
+.container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  max-width: 1100px;
+}
+
+/* Search Section Styling */
+.card {
+  border: none;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 1.5rem !important;
+  margin-bottom: 1.5rem;
+}
+
+/* Search and Reset Buttons */
+.search-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.search-controls button {
+  text-transform: none;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+}
+
+.search-controls .mat-raised-button.mat-primary {
+  background-color: #2196f3;
+  color: white;
+}
+
+.search-controls .mat-stroked-button.mat-warn {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+/* Add Employee Button */
+.add-employee-btn {
+  background-color: #4caf50;
+  color: white;
+  text-transform: none;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+}
+
+/* Table Styling */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.table thead {
+  background-color: #f1f3f5;
+}
+
+.table th {
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  padding: 1rem;
+  border: none;
+}
+
+.table td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+}
+
+/* Action Buttons in Table */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-buttons .mat-button {
+  min-width: 80px;
+  text-transform: none;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
+
+.action-buttons .mat-button.mat-primary {
+  color: #2196f3;
+}
+
+.action-buttons .mat-button.mat-accent {
+  color: #ff9800;
+}
+
+.action-buttons .mat-button.mat-warn {
+  color: #f44336;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .search-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}
+
+/* No Employees Message */
+.no-employees {
+  text-align: center;
+  color: #888;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+/* Error Message */
+.error-message {
+  background-color: #ffebee;
+  color: #d32f2f;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}

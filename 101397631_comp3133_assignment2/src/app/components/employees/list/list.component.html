@@ -9,7 +9,7 @@
   </div>
 
   <!-- Search Filters -->
-  <div *ngIf="showSearch" class="card p-3 shadow-sm mb-4">
+  <div *ngIf="showSearch" class="card shadow-sm mb-4">
     <div class="row g-3">
       <div class="col-md-4">
         <mat-form-field class="w-100">
@@ -23,7 +23,7 @@
           <input matInput [(ngModel)]="searchCriteria.designation" name="designation" />
         </mat-form-field>
       </div>
-      <div class="col-md-4 d-flex align-items-end justify-content-start gap-2">
+      <div class="col-md-4 d-flex align-items-end search-controls">
         <button mat-raised-button color="primary" (click)="searchEmployees()">Search</button>
         <button mat-stroked-button color="warn" (click)="resetSearch()">Reset</button>
       </div>
@@ -32,7 +32,7 @@
 
   <!-- Add Employee Button -->
   <div class="mb-3 text-end">
-    <button mat-raised-button color="accent" (click)="addEmployee()">Add Employee</button>
+    <button mat-raised-button class="add-employee-btn" (click)="addEmployee()">Add Employee</button>
   </div>
 
   <!-- Loading Indicator -->
@@ -41,7 +41,7 @@
   <!-- Employees Table -->
   <div *ngIf="!isLoading && employees.length">
     <table class="table table-hover table-bordered align-middle">
-      <thead class="table-light">
+      <thead>
         <tr>
           <th>Name</th>
           <th>Email</th>
@@ -56,7 +56,7 @@
           <td>{{ emp.email }}</td>
           <td>{{ emp.designation | capitalize }}</td>
           <td>{{ emp.department | capitalize }}</td>
-          <td class="text-center d-flex justify-content-center flex-wrap gap-2">
+          <td class="text-center action-buttons">
             <button mat-button color="primary" (click)="view(emp.id)">View</button>
             <button mat-button color="accent" (click)="update(emp.id)">Update</button>
             <button mat-button color="warn" (click)="deleteEmployee(emp.id)">Delete</button>
@@ -67,12 +67,12 @@
   </div>
 
   <!-- No Employees Message -->
-  <div *ngIf="!isLoading && !employees.length" class="text-center mt-4">
+  <div *ngIf="!isLoading && !employees.length" class="no-employees">
     <p>No employees found.</p>
   </div>
 
   <!-- Error Message -->
-  <div *ngIf="errorMessage" class="text-danger mt-3">
+  <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
 </div>

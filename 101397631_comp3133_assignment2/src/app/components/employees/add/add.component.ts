@@ -35,6 +35,7 @@ export class AddEmployeeComponent {
   employeeForm: FormGroup;
   errorMessage: string = '';
   previewImage: string | null = null;
+  imageLoadError: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -50,17 +51,61 @@ export class AddEmployeeComponent {
       salary: ['', [Validators.required, Validators.min(1000)]],
       date_of_joining: ['', Validators.required],
       department: ['', Validators.required],
-      employee_photo: ['']
+      employee_photo: ['', [this.validateImageUrl]]
     });
+
+    // Listen to changes in the employee_photo field
+    this.employeeForm.get('employee_photo')?.valueChanges.subscribe(
+      (url) => this.onImageURLChange(url)
+    );
   }
 
-  onImageURLChange(): void {
-    const url = this.employeeForm.get('employee_photo')?.value;
-    this.previewImage = url || null;
+  // Custom validator for image URL
+  validateImageUrl(control: any) {
+    if (!control.value) return null;
+    
+    // Basic URL validation
+    const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp))/i;
+    return urlPattern.test(control.value) ? null : { invalidImageUrl: true };
+  }
+
+  onImageURLChange(url: string): void {
+    // Reset previous state
+    this.previewImage = null;
+    this.imageLoadError = false;
+
+    // If URL is empty or invalid, return
+    if (!url) return;
+
+    // Validate URL format
+    const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp))/i;
+    if (!urlPattern.test(url)) {
+      this.imageLoadError = true;
+      return;
+    }
+
+    // Attempt to load the image
+    const img = new Image();
+    img.onload = () => {
+      this.previewImage = url;
+      this.imageLoadError = false;
+    };
+    img.onerror = () => {
+      this.previewImage = null;
+      this.imageLoadError = true;
+    };
+    img.src = url;
   }
 
   onSubmit(): void {
-    if (this.employeeForm.invalid) return;
+    if (this.employeeForm.invalid) {
+      // Mark all fields as touched to show validation errors
+      Object.keys(this.employeeForm.controls).forEach(field => {
+        const control = this.employeeForm.get(field);
+        control?.markAsTouched();
+      });
+      return;
+    }
 
     this.employeeService.addEmployee(this.employeeForm.value).subscribe({
       next: () => this.router.navigate(['/employees']),
