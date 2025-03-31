@@ -5,6 +5,8 @@ body {
     margin: 0;
     padding: 0;
   }
+
+  
   
   .container {
     max-width: 1000px;
@@ -402,4 +404,22 @@ body {
   padding: 1rem;
   border-radius: 8px;
   margin-top: 1rem;
+}
+
+.logout-button {
+  background-color: white;
+  color: #1976d2;
+  font-weight: 600;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #f44336;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
