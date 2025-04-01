@@ -1,50 +1,136 @@
-# 🚀 Employee Management System (GraphQL + Node.js + MongoDB)
+# 🚀 Full Stack Employee Management System (Angular + Node.js + GraphQL + MongoDB)
 
-## 📚 **Introduction**
-The **Employee Management System** is a **GraphQL-based API** designed for **user authentication and employee management**. It includes:
-- ✅ **User authentication** (Signup, Login with JWT)
-- ✅ **Employee CRUD operations**
-- ✅ **Role-based access control** (Only authenticated users can manage employees)
-- ✅ **Data validation** using `express-validator`
-- ✅ **MongoDB storage** with `Mongoose`
-- ✅ **JWT authentication** for security
+## 📚 Introduction
+The **Employee Management System** is a **Full Stack Web Application** developed as part of **COMP 3133 Assignment 1 & 2** by **Milan Patel (101397631)**.  
+It allows users to **Signup, Login, Manage Employee Records (CRUD)** with **JWT Authentication**, Live Image URL preview, Search, and proper validations.
+
+The backend is built using **Node.js, Express, GraphQL, MongoDB** and the frontend is developed in **Angular (Standalone Components)**.  
+**Both Frontend & Backend are deployed together on Vercel in a Single Repository.**
 
 ---
 
-## 🤝 **Setup & Installation**
+## 🌐 Live Demo
+> ✅ **Production URL:**  
+**https://assignment-full-stach.vercel.app/login**
 
-### **1️⃣ Clone the Repository**
-```sh
+> ✅ **GitHub Repository:**  
+**https://github.com/Milan-p23/Student-_COMP3133_101397631_Assignment1**
+
+---
+
+## 🎯 Key Features
+- 🔐 User Authentication (Signup & Login with JWT)
+- 📧 Login using **Email or Username**
+- 👥 Employee CRUD Operations (Add, View, Update, Delete)
+- 🔎 Search Employees by Designation or Department
+- 🖼️ Add Employee with **Image URL & Live Preview**
+- 💵 Salary Validation (Minimum ₹1000)
+- 🎨 Angular Frontend Features:
+  - Standalone Components & Modular Architecture
+  - Reactive Forms with Field Validations
+  - Services for API Integration
+  - Custom Pipes (e.g., Capitalize Pipe)
+  - Custom Directives
+  - Search Filter & Routing
+  - Token-based Protected Routes
+  - Logout Functionality
+- 🌍 Deployed on **Vercel CLI** (Both Frontend & Backend in one repo)
+- 🔐 Environment Variables stored securely on Vercel
+
+---
+
+## 🤝 Setup & Installation
+
+```bash
+# 1️⃣ Clone the Repository
 git clone https://github.com/Milan-p23/Student-_COMP3133_101397631_Assignment1.git
-cd employee-management-system
-```
+cd Student-_COMP3133_101397631_Assignment1
 
-### **2️⃣ Install Dependencies**
-```sh
+# 2️⃣ Install Dependencies
 npm install
-```
+cd 101397631_comp3133_assignment2
+npm install
+cd ../employee-management-system
+npm install
 
-### **3️⃣ Configure Environment Variables**
-Create a `.env` file in the root directory and add:
-```env
-MONGO_URI=mongodb+srv://your_db_user:your_db_password@cluster0.mongodb.net/your_db_name
-JWT_SECRET=your_secret_key
+# 3️⃣ Configure Environment Variables
+# Add the following variables in .env file inside /employee-management-system:
+MONGO_URI=mongodb+srv://your_db_user:your_db_password@cluster0.mongodb.net/comp3133_101397631_assignment1
+JWT_SECRET=your_jwt_secret
 PORT=4000
-```
 
-### **4️⃣ Start the Server**
-```sh
+# 4️⃣ Run Locally (Optional)
+# Backend:
+cd employee-management-system
 npm start
+
+# Frontend:
+cd ../101397631_comp3133_assignment2
+ng serve
+
+# 5️⃣ Build & Deploy to Vercel
+npx vercel
+npx vercel --prod
 ```
-✅ Server will start at: **`http://localhost:4000/graphql`**
 
 ---
 
-## 🚀 **GraphQL API Endpoints**
+## ⚙️ Project Structure
 
-### **1️⃣ User Authentication**
-#### **🔹 Signup Mutation**
-**Endpoint:** `/graphql`
+```bash
+📂 Student-_COMP3133_101397631_Assignment1
+├── 📂 101397631_comp3133_assignment2          # Angular Frontend (Assignment 2)
+│   ├── angular.json
+│   ├── package.json
+│   ├── tsconfig.*.json
+│   └── 📂 src
+│       ├── 📂 app
+│       │   ├── 📂 auth                       # Signup & Login Components
+│       │   ├── 📂 employees                  # Employee CRUD Components
+│       │   ├── 📂 services                   # Auth & Employee Services
+│       │   ├── 📂 pipes                      # Capitalize Pipe
+│       │   ├── 📂 directives                 # Custom Directives
+│       │   ├── app.config.ts                 # Apollo Client Config
+│       │   └── app.routes.ts                 # Angular Routing
+│       ├── index.html
+│       ├── main.ts
+│       ├── main.server.ts
+│       ├── server.ts                         # SSR Server
+│       └── styles.scss
+│
+├── 📂 employee-management-system              # Node.js Backend (Assignment 1)
+│   ├── 📂 src
+│   │   ├── 📂 config                         # Database Configuration
+│   │   │   └── db.js
+│   │   ├── 📂 models                         # Mongoose Models
+│   │   │   ├── User.js
+│   │   │   └── Employee.js
+│   │   ├── 📂 graphql                        # GraphQL API
+│   │   │   ├── 📂 mutations
+│   │   │   ├── 📂 queries
+│   │   │   ├── 📂 type
+│   │   │   └── schema.js
+│   │   ├── 📂 middleware                     # Auth Middleware
+│   │   │   └── authMiddleware.js
+│   │   ├── 📂 utils                          # Validation Helpers
+│   │   │   └── validateInput.js
+│   │   ├── 📂 validations                    # Input Validations
+│   │   │   ├── userValidations.js
+│   │   │   └── employeeValidations.js
+│   │   └── server.js                         # Express Server
+│   ├── .env
+│   └── package.json
+├── vercel.json                                # Vercel Deployment Config
+└── README.md                                  # Documentation
+```
+
+---
+
+## 🚀 API Endpoints (GraphQL)
+
+### 🟢 User Authentication
+
+#### 🔸 Signup Mutation
 ```graphql
 mutation {
   Signup(username: "john_doe", email: "john@example.com", password: "secure123") {
@@ -56,9 +142,9 @@ mutation {
 }
 ```
 
-#### **🔹 Login Mutation**
+#### 🔸 Login (Email or Username)
 ```graphql
-mutation {
+query {
   Login(email: "john@example.com", password: "secure123") {
     id
     username
@@ -70,16 +156,15 @@ mutation {
 
 ---
 
-### **2️⃣ Employee Management**
-🔹 **All Employee management queries require authentication!**  
-🔹 **Pass JWT Token in the request headers as:**  
+### 🟢 Employee Management (Protected APIs)
+> 🔐 Requires JWT Token in headers:
 ```json
 {
   "Authorization": "Bearer your_jwt_token"
 }
 ```
 
-#### **🔹 Add Employee Mutation**
+#### 🔸 Add Employee
 ```graphql
 mutation {
   AddEmployee(
@@ -91,19 +176,18 @@ mutation {
     salary: 5000,
     date_of_joining: "2023-10-01",
     department: "IT",
-    employee_photo: "john.jpg"
+    employee_photo: "https://example.com/photo.jpg"
   ) {
     id
     first_name
     last_name
     email
-    designation
     department
   }
 }
 ```
 
-#### **🔹 Get All Employees Query**
+#### 🔸 Get All Employees
 ```graphql
 query {
   getAllemployees {
@@ -117,82 +201,80 @@ query {
 }
 ```
 
----
-
-## ⚙️ **Project Structure**
-```
-📂 employee-management-system
-│── 📂 src
-│   ├── 📂 config                 # Database configuration
-│   │   ├── db.js                 # MongoDB connection
-│   │
-│   ├── 📂 models                 # Mongoose models
-│   │   ├── User.js                # User schema
-│   │   ├── Employee.js            # Employee schema
-│   │
-│   ├── 📂 graphql                 # GraphQL API
-│   │   ├── 📂 mutations           # GraphQL mutations
-│   │   ├── 📂 queries             # GraphQL queries
-│   │   ├── 📂 type                # GraphQL types
-│   │   ├── schema.js              # Main GraphQL schema
-│   │
-│   ├── 📂 middleware              # Authentication middleware
-│   │   ├── authMiddleware.js
-│   │
-│   ├── 📂 utils                   # Utility functions
-│   │   ├── validateInput.js       # Express validation helper
-│   │
-│   ├── 📂 validations             # Input validation rules
-│   │   ├── userValidations.js     # User validation rules
-│   │   ├── employeeValidations.js # Employee validation rules
-│   │
-│   ├── server.js                  # Express server
-│
-│── .env                            # Environment variables
-│── package.json                    # Dependencies
-│── README.md                        # Documentation
+#### 🔸 Search Employee By ID
+```graphql
+query {
+  getEmployeebyID(id: "employee_id_here") {
+    id
+    first_name
+    last_name
+    email
+    department
+  }
+}
 ```
 
----
-
-## 🌟 **How to Customize**
-### **🔹 Change Database Name**
-Update `.env` file:
-```env
-MONGO_URI=mongodb+srv://your_db_user:your_db_password@cluster0.mongodb.net/your_new_db_name
+#### 🔸 Search Employee by Department or Designation
+```graphql
+query {
+  SearchEmployee(department: "IT") {
+    id
+    first_name
+    last_name
+    email
+  }
+}
 ```
-### **🔹 Change JWT Secret**
-Update `.env` file:
-```env
-JWT_SECRET=your_new_secret_key
+
+#### 🔸 Update Employee
+```graphql
+mutation {
+  updateEmployee(
+    eid: "employee_id_here",
+    first_name: "Updated Name",
+    salary: 8000
+  ) {
+    id
+    first_name
+    salary
+  }
+}
 ```
-### **🔹 Modify Employee Schema**
-Edit `src/models/Employee.js` and add/remove fields.
 
-### **🔹 Change Authentication Middleware**
-Edit `src/middleware/authMiddleware.js` to modify role-based access.
-
----
-
-## ✅ **Key Features**
-✔ **GraphQL API with Queries & Mutations**  
-✔ **JWT Authentication for Security**  
-✔ **MongoDB with Mongoose ORM**  
-✔ **Fully Validated Inputs using `express-validator`**  
-✔ **Role-based Access Control for Employees**  
-✔ **Modular & Scalable Codebase**  
+#### 🔸 Delete Employee
+```graphql
+mutation {
+  deleteEmployee(eid: "employee_id_here")
+}
+```
 
 ---
 
-## 📌 **Contributing**
-Feel free to **fork, improve, and contribute** to this project.  
+## 🔥 Assignment 2 (Frontend - Angular) Highlights
+- ✅ **Signup & Login Forms with Reactive Form Validation**
+- ✅ **Email or Username login supported**
+- ✅ **Add Employee Form with:**
+  - Field Validations
+  - Salary ≥ 1000 validation
+  - Live **Image URL Preview**
+- ✅ **Search Bar** for filtering Employees
+- ✅ **Custom Pipes** (Capitalize Pipe)
+- ✅ **Custom Directives**
+- ✅ **Routing & Lazy Loading**
+- ✅ **Token-based Protected Routes & Logout**
+- ✅ **Angular Material + Bootstrap UI**
+- ✅ **Fully deployed on Vercel (Frontend + Backend in one repo)**
 
 ---
 
-## 📚 **License**
-This project is **MIT Licensed**.
+## 📄 License
+This project is licensed under the **MIT License**.
 
 ---
 
-🎉 **Enjoy building your Employee Management System!** 🚀
+## 🙌 Contributing
+Feel free to **fork, improve & raise PRs** to contribute to this project.
 
+---
+
+🎉 **COMP 3133 Full Stack Assignment 1 & 2 Completed & Deployed Successfully!**
