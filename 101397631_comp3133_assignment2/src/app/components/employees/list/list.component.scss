@@ -1,0 +1,46 @@
+/* Photo column image */
+.employee-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+  }
+  
+  /* Table row cells */
+  td,
+  th {
+    vertical-align: middle !important;
+    text-align: center; /* Ensures alignment is center for all columns */
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+  
+  /* Actions column */
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap; /* Prevent line wrapping */
+    margin: 0 auto; /* Center the action buttons */
+    width: 100%; /* Ensure the action buttons take full width */
+    max-width: 150px; /* Limit the width of the action buttons */
+    padding: 0 10px; /* Add some padding for better spacing */
+    box-sizing: border-box; /* Include padding in width calculation */
+    border-radius: 4px; /* Optional: Add rounded corners */
+  }
+  
+  /* Table itself */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures columns are of equal width */
+  }
+  
+  /* Fix for consistent row height */
+  tr {
+    height: 60px;
+  }
+  

@@ -99,19 +99,23 @@ export class AddEmployeeComponent {
 
   onSubmit(): void {
     if (this.employeeForm.invalid) {
-      // Mark all fields as touched to show validation errors
+      // Mark all fields as touched to trigger validation messages
       Object.keys(this.employeeForm.controls).forEach(field => {
         const control = this.employeeForm.get(field);
         control?.markAsTouched();
       });
       return;
     }
-
+  
+    this.errorMessage = ''; // Clear previous error
+  
     this.employeeService.addEmployee(this.employeeForm.value).subscribe({
       next: () => this.router.navigate(['/employees']),
       error: (err) => {
-        this.errorMessage = err.message || 'Add employee failed.';
+        // Show backend error in red
+        this.errorMessage = err?.error?.errors?.[0]?.message || err.message || 'Failed to add employee.';
       },
     });
   }
+  
 }

@@ -43,6 +43,7 @@
     <table class="table table-hover table-bordered align-middle">
       <thead>
         <tr>
+          <th>Photo</th>
           <th>Name</th>
           <th>Email</th>
           <th>Designation</th>
@@ -52,17 +53,22 @@
       </thead>
       <tbody>
         <tr *ngFor="let emp of employees">
+          <td class="text-center">
+            <img [src]="emp.employee_photo" alt="Employee Photo" class="employee-avatar" />
+          </td>
+          
           <td>{{ emp.first_name | capitalize }} {{ emp.last_name | capitalize }}</td>
           <td>{{ emp.email }}</td>
           <td>{{ emp.designation | capitalize }}</td>
           <td>{{ emp.department | capitalize }}</td>
-          <td class="text-center action-buttons">
+          <td class="action-buttons">
             <button mat-button color="primary" (click)="view(emp.id)">View</button>
             <button mat-button color="accent" (click)="update(emp.id)">Update</button>
             <button mat-button color="warn" (click)="deleteEmployee(emp.id)">Delete</button>
           </td>
         </tr>
       </tbody>
+      
     </table>
   </div>
 
